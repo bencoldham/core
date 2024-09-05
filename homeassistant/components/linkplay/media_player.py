@@ -148,7 +148,7 @@ class LinkPlayMediaPlayerEntity(MediaPlayerEntity):
         self._attr_unique_id = bridge.device.uuid
 
         self._attr_source_list = [
-            SOURCE_MAP[playing_mode] for playing_mode in bridge.device.playmode_support
+            SOURCE_MAP.get(playing_mode, "other") for playing_mode in bridge.device.playmode_support
         ]
 
         manufacturer, model = get_info_from_project(bridge.device.properties["project"])
